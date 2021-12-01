@@ -9,7 +9,7 @@ namespace Laboratornaya_5.Object
     {
         public MyRectangle(float x, float y, float angle) : base(x, y, angle)
         {
-
+         
         }
 
         // переопределяем Render
