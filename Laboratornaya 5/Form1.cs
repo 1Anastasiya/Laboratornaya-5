@@ -19,11 +19,16 @@ namespace Laboratornaya_5
         MyRectangle myRect;
         List<BaseObject> objects = new (); //добавляем список
         Player player;
+        Marker marker;
         public Form1()
         {
             InitializeComponent();
 
-            player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
+            player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0); //создаем экземпляр класса игрока в центре экрана
+            marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
+            
+            objects.Add(marker);
+
             objects.Add(player);
             objects.Add(new MyRectangle(50, 50, 0));
             objects.Add(new MyRectangle(100, 100, 45));
