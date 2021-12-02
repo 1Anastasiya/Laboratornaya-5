@@ -23,7 +23,7 @@ namespace Laboratornaya_5
         {
             InitializeComponent();
 
-            player = new Player(pbMain.Width / pbMain.Height / 2, 0);
+            player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
             objects.Add(player);
             objects.Add(new MyRectangle(50, 50, 0));
             objects.Add(new MyRectangle(100, 100, 45));
