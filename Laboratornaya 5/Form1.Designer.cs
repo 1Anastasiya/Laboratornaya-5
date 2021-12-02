@@ -29,7 +29,9 @@ namespace Laboratornaya_5
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pbMain = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,6 +44,12 @@ namespace Laboratornaya_5
             this.pbMain.TabStop = false;
             this.pbMain.Click += new System.EventHandler(this.pictureBox1_Click);
             this.pbMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMain_Paint);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 30;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -59,6 +67,7 @@ namespace Laboratornaya_5
         #endregion
 
         private System.Windows.Forms.PictureBox pbMain;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

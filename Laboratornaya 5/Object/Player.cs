@@ -21,7 +21,7 @@ namespace Laboratornaya_5.Object
             g.DrawEllipse(
                 new Pen(Color.Black, 2),
                 -15, -15,
-                - 30, -30
+                 30, 30
                 );
             g.DrawLine(new Pen(Color.Black, 2), 0, 0, 25, 0);
         }
