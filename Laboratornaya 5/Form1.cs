@@ -17,6 +17,7 @@ namespace Laboratornaya_5
     public partial class Form1 : Form
     {
         MyRectangle myRect;
+        MyCircle myCircle;
         List<BaseObject> objects = new (); //добавляем список
         Player player;
         Marker marker;
@@ -43,7 +44,9 @@ namespace Laboratornaya_5
             objects.Add(player);
             objects.Add(new MyRectangle(50, 50, 0));
             objects.Add(new MyRectangle(100, 100, 45));
-           
+            objects.Add(new MyCircle(300, 300, 0));
+
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -88,11 +91,11 @@ namespace Laboratornaya_5
 
         private void pbMain_MouseClick(object sender, MouseEventArgs e)
         {
-            // тут добавил создание маркера по клику если он еще не создан
+            //создание маркера по клику если он еще не создан
             if (marker == null)
             {
                 marker = new Marker(0, 0, 0);
-                objects.Add(marker); // и главное не забыть пололжить в objects
+                objects.Add(marker); //главное не забыть пололжить в objects
             }
 
             marker.X = e.X;

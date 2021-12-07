@@ -59,5 +59,6 @@ namespace Laboratornaya_5.Object
                 this.OnOverlap(this, obj); //то вызываем их
             }
         }
+        
     }
 }
