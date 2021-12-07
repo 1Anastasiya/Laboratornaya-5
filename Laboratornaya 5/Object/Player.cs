@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Text;
 
 namespace Laboratornaya_5.Object
@@ -24,6 +25,12 @@ namespace Laboratornaya_5.Object
                  30, 30
                 );
             g.DrawLine(new Pen(Color.Black, 2), 0, 0, 25, 0);
+        }
+        public override GraphicsPath GetGraphicsPath() //в форму добавляем круг совпадающих по размеру с кругом, выводимым в Render
+        {
+            var path = base.GetGraphicsPath();
+            path.AddEllipse(-15, -15, 30, 30);
+            return path;
         }
     }
 
