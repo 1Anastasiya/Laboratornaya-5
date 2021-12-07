@@ -25,6 +25,17 @@ namespace Laboratornaya_5
             InitializeComponent();
 
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0); //создаем экземпляр класса игрока в центре экрана
+            player.OnOverlap += (p, obj) =>
+            {
+                txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLog.Text;
+            };
+
+            player.OnMarkerOverlap += (m) => // добавил реакцию на пересечение с маркером
+            {
+                objects.Remove(m);
+                marker = null;
+            };
+
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
             
             objects.Add(marker);
@@ -46,46 +57,33 @@ namespace Laboratornaya_5
 
             g.Clear(Color.White);
 
-            foreach (var obj in objects.ToList())
+            updatePlayer();//сначала вызываем пересчёт игрока
+
+            foreach (var obj in objects.ToList())  // пересчитываем пересечения
             {
                 // проверяю было ли пересечение с игроком
                 if (obj != player && player.Overlaps(obj, g))
                 {
                     // и если было вывожу информацию на форму
-                    txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLog.Text;
-                // тут проверяю что достиг маркера
-            if (obj == marker)
-                    {
-                        // если достиг, то удаляю маркер из оригинального objects
-                        objects.Remove(marker);
-                        marker = null; // и обнуляю маркер
-                    }
+                    player.Overlap(obj); // то есть игрок пересекся с объектом
+                                            // и объект пересекся с игроком
+                                         // тут проверяю что достиг маркера
                 }
-                g.Transform = obj.GetTransform();
-                obj.Render(g);  
             }
+                // рендерим объекты
+                foreach (var obj in objects)
+                {
+                    g.Transform = obj.GetTransform();
+                    obj.Render(g);
+                }
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-             if (marker != null)
-             {
-                    //рассчитываем вектор между игроком и маркером
-                    float dx = marker.X - player.X;
-                    float dy = marker.Y - player.Y;
-
-                    //находим его длину
-                    float length = MathF.Sqrt(dx * dx + dy * dy);
-                    dx /= length;
-                    dy /= length;
-
-                    //пересчитываем координаты игрока
-                    player.X += dx * 2;
-                    player.Y += dy * 2;
-             }
-                //запрашиваем обновление pbMain
-                //это вызовет метод pbMain_Paint по новой
-                pbMain.Invalidate();
+            //запрашиваем обновление pbMain
+            //это вызовет метод pbMain_Paint по новой
+            pbMain.Invalidate();
         }
 
         private void pbMain_MouseClick(object sender, MouseEventArgs e)
@@ -99,6 +97,35 @@ namespace Laboratornaya_5
 
             marker.X = e.X;
             marker.Y = e.Y;
+        }
+        private void updatePlayer()
+        {
+            if (marker != null)
+            {
+                //рассчитываем вектор между игроком и маркером
+                float dx = marker.X - player.X;
+                float dy = marker.Y - player.Y;
+
+                //находим его длину
+                float length = MathF.Sqrt(dx * dx + dy * dy);
+                dx /= length;
+                dy /= length;
+
+                //пересчитываем координаты игрока
+                player.vX += dx * 0.5f;
+                player.vY += dy * 0.5f;
+
+                // расчитываем угол поворота игрока 
+                player.Angle = 90 - MathF.Atan2(player.vX, player.vY) * 180 / MathF.PI;
+            }
+            // тормозящий момент,
+            // нужен чтобы, когда игрок достигнет маркера произошло постепенное замедление
+            player.vX += -player.vX * 0.1f;
+            player.vY += -player.vY * 0.1f;
+
+            // пересчет позиция игрока с помощью вектора скорости
+            player.X += player.vX;
+            player.Y += player.vY;
         }
     }
 }
