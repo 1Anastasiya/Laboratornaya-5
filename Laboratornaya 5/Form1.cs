@@ -52,6 +52,7 @@ namespace Laboratornaya_5
                 m.Y = rand.Next(0, pbMain.Height);
                 counter++;
                 Counter.Text = $"Счёт: {counter}";
+
             };
 
             
@@ -64,7 +65,7 @@ namespace Laboratornaya_5
             objects.Add(new MyRectangle(100, 100, 45));
             objects.Add(new MyCircle(300, 300, 0));
             objects.Add(new MyCircle(200, 200, 0));
-
+            objects.Add(new RedArea(400, 400, 0));
 
         }
 
@@ -85,11 +86,8 @@ namespace Laboratornaya_5
             {
                 if (obj != player && player.Overlaps(obj, g))
                 {
-                    
                     player.Overlap(obj);
-                   
                 }
-
             }
 
             foreach (var obj in objects.ToList())  // пересчитываем пересечения
@@ -166,8 +164,7 @@ namespace Laboratornaya_5
 
         private void Counter_TextChanged(object sender, EventArgs e)
         {
-            //Counter.Text = (Int32.Parse(Counter.Text) + 1).ToString();
-
+          
         }
     }
 }

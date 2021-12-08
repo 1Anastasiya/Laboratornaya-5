@@ -8,31 +8,30 @@ using System.Drawing.Drawing2D;
 
 namespace Laboratornaya_5.Object
 {
-    class MyCircle : BaseObject
+    class RedArea : BaseObject
     {
-        public MyCircle(float x, float y, float angle) : base(x, y, angle)
+        int Size;
+        public RedArea(float x, float y, float angle) : base(x, y, angle)
         {
 
         }
         public override void Render(Graphics g)
         {
+            Size = 10;
+            g.FillEllipse(new SolidBrush(Color.DarkRed), -Size, -Size, Size*2, Size*2);
 
-            g.FillEllipse(new SolidBrush(Color.Green), -17, -17, 35, 35);
-            g.FillEllipse(new SolidBrush(Color.Green), -20, -20, 40, 40);
 
-           
         }
 
 
         public override GraphicsPath GetGraphicsPath()
         {
             var path = base.GetGraphicsPath();
-            path.AddEllipse(-17, -17, 35, 35);
-            path.AddEllipse(-20, -20, 40, 40);//зелёный круг
-
+            path.AddEllipse(-Size, -Size, Size * 2, Size * 2);
             return path;
-        }
 
+
+        }
 
     }
 }
