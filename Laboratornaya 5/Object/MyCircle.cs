@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Laboratornaya_5.Object
 {
@@ -15,9 +16,18 @@ namespace Laboratornaya_5.Object
         }
         public override void Render(Graphics g)
         {
-            // и запихиваем туда код из формы
-            g.FillEllipse(new SolidBrush(Color.Green), -150, -150, 50, 40);
-           
+
+            g.FillEllipse(new SolidBrush(Color.Green), -17, -17, 35, 35);
+
         }
+
+        public override GraphicsPath GetGraphicsPath()
+        {
+            var path = base.GetGraphicsPath();
+            path.AddEllipse(-17, -17, 35, 35);
+            return path;
+        }
+
+
     }
 }

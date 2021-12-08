@@ -10,6 +10,9 @@ namespace Laboratornaya_5.Object
     {
         public Action<Marker> OnMarkerOverlap;
         public float vX, vY;
+
+        public Action<MyCircle> OnMyCircleOverlap;
+        public float fX, fY;
         public Player(float x, float y, float angle) : base(x, y, angle)
         {
 
@@ -42,7 +45,13 @@ namespace Laboratornaya_5.Object
             {
                 OnMarkerOverlap(obj as Marker);
             }
+
+            if (obj is MyCircle)
+            {
+                OnMyCircleOverlap (obj as MyCircle);
+            }
         }
+       
     }
 
 }

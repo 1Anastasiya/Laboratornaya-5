@@ -24,17 +24,32 @@ namespace Laboratornaya_5
         public Form1()
         {
             InitializeComponent();
+            Random rand;
+            rand = new Random();
+            int value = rand.Next();
 
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0); //создаем экземпляр класса игрока в центре экрана
             player.OnOverlap += (p, obj) =>
             {
                 txtLog.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLog.Text;
+                if(obj is MyRectangle)
+                {
+                    player.vX = -player.vX;
+                    player.vY = -player.vY;
+                }
             };
 
-            player.OnMarkerOverlap += (m) => // добавил реакцию на пересечение с маркером
+            player.OnMarkerOverlap += (m) => //реакция на пересечение с маркером
             {
                 objects.Remove(m);
                 marker = null;
+            };
+
+            player.OnMyCircleOverlap += (m) => //реакция на пересечение с зелённым кругом
+            {
+                m.X = rand.Next(0, 199);
+                m.Y = rand.Next(0,199);
+                
             };
 
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
@@ -68,9 +83,9 @@ namespace Laboratornaya_5
                 if (obj != player && player.Overlaps(obj, g))
                 {
                     // и если было вывожу информацию на форму
-                    player.Overlap(obj); // то есть игрок пересекся с объектом
-                                            // и объект пересекся с игроком
-                                         // тут проверяю что достиг маркера
+                    player.Overlap(obj); //то есть игрок пересекся с объектом
+                                         //и объект пересекся с игроком
+                                         //проверяю что достиг маркера
                 }
             }
                 // рендерим объекты
@@ -100,6 +115,8 @@ namespace Laboratornaya_5
 
             marker.X = e.X;
             marker.Y = e.Y;
+
+
         }
         private void updatePlayer()
         {
@@ -129,6 +146,7 @@ namespace Laboratornaya_5
             // пересчет позиция игрока с помощью вектора скорости
             player.X += player.vX;
             player.Y += player.vY;
+
         }
     }
 }
