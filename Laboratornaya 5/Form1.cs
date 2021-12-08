@@ -21,6 +21,7 @@ namespace Laboratornaya_5
         List<BaseObject> objects = new (); //добавляем список
         Player player;
         Marker marker;
+        int counter = 0;
         public Form1()
         {
             InitializeComponent();
@@ -47,11 +48,13 @@ namespace Laboratornaya_5
 
             player.OnMyCircleOverlap += (m) => //реакция на пересечение с зелённым кругом
             {
-                m.X = rand.Next(0, 199);
-                m.Y = rand.Next(0,199);
-                
+                m.X = rand.Next(0, pbMain.Height);
+                m.Y = rand.Next(0, pbMain.Height);
+                counter++;
+                Counter.Text = $"Счёт: {counter}";
             };
 
+            
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
             
             objects.Add(marker);
@@ -60,6 +63,7 @@ namespace Laboratornaya_5
             objects.Add(new MyRectangle(50, 50, 0));
             objects.Add(new MyRectangle(100, 100, 45));
             objects.Add(new MyCircle(300, 300, 0));
+            objects.Add(new MyCircle(200, 200, 0));
 
 
         }
@@ -76,6 +80,17 @@ namespace Laboratornaya_5
             g.Clear(Color.White);
 
             updatePlayer();//сначала вызываем пересчёт игрока
+
+            foreach (var obj in objects.ToList())
+            {
+                if (obj != player && player.Overlaps(obj, g))
+                {
+                    
+                    player.Overlap(obj);
+                   
+                }
+
+            }
 
             foreach (var obj in objects.ToList())  // пересчитываем пересечения
             {
@@ -146,6 +161,12 @@ namespace Laboratornaya_5
             // пересчет позиция игрока с помощью вектора скорости
             player.X += player.vX;
             player.Y += player.vY;
+
+        }
+
+        private void Counter_TextChanged(object sender, EventArgs e)
+        {
+            //Counter.Text = (Int32.Parse(Counter.Text) + 1).ToString();
 
         }
     }

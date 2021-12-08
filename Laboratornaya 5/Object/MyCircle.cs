@@ -18,6 +18,7 @@ namespace Laboratornaya_5.Object
         {
 
             g.FillEllipse(new SolidBrush(Color.Green), -17, -17, 35, 35);
+            g.FillEllipse(new SolidBrush(Color.Green), -20, -20, 40, 40);
 
         }
 
@@ -25,6 +26,7 @@ namespace Laboratornaya_5.Object
         {
             var path = base.GetGraphicsPath();
             path.AddEllipse(-17, -17, 35, 35);
+            path.AddEllipse(-20, -20, 40, 40);
             return path;
         }
 

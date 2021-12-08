@@ -33,12 +33,13 @@ namespace Laboratornaya_5
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.Counter = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.SuspendLayout();
             // 
             // pbMain
             // 
-            this.pbMain.Location = new System.Drawing.Point(12, 20);
+            this.pbMain.Location = new System.Drawing.Point(12, 44);
             this.pbMain.Name = "pbMain";
             this.pbMain.Size = new System.Drawing.Size(818, 517);
             this.pbMain.TabIndex = 0;
@@ -55,23 +56,33 @@ namespace Laboratornaya_5
             // 
             // txtLog
             // 
-            this.txtLog.Location = new System.Drawing.Point(605, 20);
+            this.txtLog.Location = new System.Drawing.Point(605, 44);
             this.txtLog.Name = "txtLog";
             this.txtLog.Size = new System.Drawing.Size(225, 517);
             this.txtLog.TabIndex = 1;
             this.txtLog.Text = "";
             // 
+            // Counter
+            // 
+            this.Counter.Location = new System.Drawing.Point(434, 7);
+            this.Counter.Name = "Counter";
+            this.Counter.Size = new System.Drawing.Size(150, 31);
+            this.Counter.TabIndex = 2;
+            this.Counter.TextChanged += new System.EventHandler(this.Counter_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 549);
+            this.ClientSize = new System.Drawing.Size(880, 573);
+            this.Controls.Add(this.Counter);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.pbMain);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -80,6 +91,7 @@ namespace Laboratornaya_5
         private System.Windows.Forms.PictureBox pbMain;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.RichTextBox txtLog;
+        private System.Windows.Forms.TextBox Counter;
     }
 }
 
