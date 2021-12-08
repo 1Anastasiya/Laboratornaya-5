@@ -18,11 +18,8 @@ namespace Laboratornaya_5.Object
         public override void Render(Graphics g)
         {
             Size = 10;
-            g.FillEllipse(new SolidBrush(Color.DarkRed), -Size, -Size, Size*2, Size*2);
-
-
+            g.FillEllipse(new SolidBrush(Color.Red), -Size, -Size, Size*2, Size*2);
         }
-
 
         public override GraphicsPath GetGraphicsPath()
         {

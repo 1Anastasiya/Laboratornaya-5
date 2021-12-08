@@ -55,7 +55,11 @@ namespace Laboratornaya_5
 
             };
 
-            
+            player.OnRedAreaOverlap += (m) => //реакция на пересечение с красной зоной
+            {
+
+            }
+
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);
             
             objects.Add(marker);
@@ -128,7 +132,6 @@ namespace Laboratornaya_5
 
             marker.X = e.X;
             marker.Y = e.Y;
-
 
         }
         private void updatePlayer()

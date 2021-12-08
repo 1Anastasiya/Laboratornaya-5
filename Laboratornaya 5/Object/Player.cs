@@ -13,6 +13,9 @@ namespace Laboratornaya_5.Object
 
         public Action<MyCircle> OnMyCircleOverlap;
         public float fX, fY;
+
+        public Action<RedArea> OnRedAreaOverlap;
+        public float zX, zY;
         public Player(float x, float y, float angle) : base(x, y, angle)
         {
 
@@ -50,6 +53,12 @@ namespace Laboratornaya_5.Object
             {
                 OnMyCircleOverlap (obj as MyCircle);
             }
+             
+            if (obj is RedArea)
+            {
+                OnRedAreaOverlap (obj as RedArea);
+            }
+                
         }
        
     }
