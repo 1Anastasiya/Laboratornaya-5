@@ -61,6 +61,8 @@ namespace Laboratornaya_5
                 m.Y = rand.Next(0, pbMain.Height);
                 counter--;
                 Counter.Text = $"Счёт: {counter}";
+
+
             };
 
             marker = new Marker(pbMain.Width / 2 + 50, pbMain.Height / 2 + 50, 0);

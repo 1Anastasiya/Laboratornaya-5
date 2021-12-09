@@ -11,16 +11,16 @@ namespace Laboratornaya_5.Object
 {
     class RedArea : BaseObject
     {
-        int Size;
+        int Size = 10;
         public RedArea(float x, float y, float angle) : base(x, y, angle)
         {
 
         }
         public override void Render(Graphics g)
         {
-            Size = 10;
+            Size ++;
             g.FillEllipse(new SolidBrush(Color.Red), -Size, -Size, Size * 2, Size * 2);
-        
+            
         }
 
         public override GraphicsPath GetGraphicsPath()
