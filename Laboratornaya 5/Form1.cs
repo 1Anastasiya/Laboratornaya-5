@@ -61,6 +61,7 @@ namespace Laboratornaya_5
                 m.Y = rand.Next(0, pbMain.Height);
                 counter--;
                 Counter.Text = $"Счёт: {counter}";
+                m.Size = 10;
 
 
             };

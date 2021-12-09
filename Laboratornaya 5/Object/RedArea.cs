@@ -11,7 +11,7 @@ namespace Laboratornaya_5.Object
 {
     class RedArea : BaseObject
     {
-        int Size = 10;
+      public  int Size = 10;
         public RedArea(float x, float y, float angle) : base(x, y, angle)
         {
 
@@ -19,7 +19,7 @@ namespace Laboratornaya_5.Object
         public override void Render(Graphics g)
         {
             Size ++;
-            g.FillEllipse(new SolidBrush(Color.Red), -Size, -Size, Size * 2, Size * 2);
+            g.FillEllipse(new SolidBrush(Color.FromArgb(25, Color.Red)), -Size, -Size, Size * 2, Size * 2);
             
         }
 
